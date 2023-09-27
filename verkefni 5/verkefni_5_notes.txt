@@ -24,6 +24,9 @@ ekki nota first child og last child eða sibling  þar sem að það er mögulei
 
 nota bara þetta classísca shit aka for til að fara í gegnum og það þarf allt að vera dinamic því að js er svo dinamic að það breytist realtime þannig ALDREI EVER FUCK AROUND MEÐ HARDCODED NUMBER IN LIST listinn getur breyst á no time 
 
+-- það þarf að passa að vera ekki að vinna ekki með js svo að það er hægt að runna js inni á servernum þar sem að það er majour security risk og þýðir að notandi hefur aðgang að öllu mjög auðveldlega
+
+
 
 
 -- js30 day challenge --
