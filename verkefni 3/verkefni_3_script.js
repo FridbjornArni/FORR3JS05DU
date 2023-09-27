@@ -1,0 +1,229 @@
+class PowerPellet {
+  constructor(x, y, color = 'red', radius = 10) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.color = color;
+  }
+}
+let coordinates = new Set();
+let score = 0;
+
+function getRandomCoordinate() {
+  let x = Math.random() * window.innerWidth;
+  let y = Math.random() * window.innerHeight;
+
+  return `${x},${y}`;
+}
+
+function generateUniqueCoordinates(num) {
+  while (coordinates.size < num) {
+    let newCoord = getRandomCoordinate();
+    if (!coordinates.has(newCoord)) {
+      coordinates.add(newCoord);
+    }
+  }
+}
+
+function createDots() {
+  generateUniqueCoordinates(50);
+
+  coordinates.forEach(coord => {
+    let [x, y] = coord.split(',').map(Number);
+    let dot = new PowerPellet(x, y, 'yellow', 5);
+    dots.push(dot);
+  });
+}
+
+let dots = [];
+
+window.onload = createDots;
+
+class PacMan {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 30; 
+    this.color = 'yellow';
+    this.lives = 3;
+    this.speed = 2;
+    this.angle = Math.PI / 4; 
+    this.rotation = 0;
+  }
+
+  move(dx, dy) {
+    this.x += dx * this.speed;
+    this.y += dy * this.speed;
+    this.x = Math.max(this.radius, Math.min(this.x, canvas.width - this.radius));
+    this.y = Math.max(this.radius, Math.min(this.y, canvas.height - this.radius));
+  }
+}
+
+let keys = {};
+
+function handleKeyDown(event) {
+  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+    keys[event.key] = true;
+  }
+}
+
+function handleKeyUp(event) {
+  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)) {
+    keys[event.key] = false;
+  }
+}
+window.addEventListener('keydown', handleKeyDown);
+window.addEventListener('keyup', handleKeyUp);
+
+class Ghost {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    this.radius = 20; 
+    this.color = color;
+    this.direction = Math.random() * 2 * Math.PI;
+    this.speed = 2;
+  }
+
+  move() {
+    this.x += Math.cos(this.direction) * this.speed;
+    this.y += Math.sin(this.direction) * this.speed;
+    if(this.x < this.radius || this.x > canvas.width - this.radius) {
+      this.direction = Math.PI - this.direction;
+    }
+    if(this.y < this.radius || this.y > canvas.height - this.radius) {
+      this.direction = -this.direction;
+    }
+  }
+}
+
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+let pacMan = new PacMan(100, 100);
+
+let powerPellets = [
+  new PowerPellet(20, 20),
+  new PowerPellet(canvas.width - 20, 20),
+  new PowerPellet(20, canvas.height - 20),
+  new PowerPellet(canvas.width - 20, canvas.height - 20),
+];
+
+let ghosts = [
+  new Ghost(200, 200, 'red'),
+  new Ghost(300, 300, 'pink'),
+  new Ghost(400, 400, 'cyan'),
+  new Ghost(500, 500, 'orange'),
+];
+
+function checkCollisions() {
+  powerPellets.forEach((pellet, index) => {
+    if (Math.hypot(pacMan.x - pellet.x, pacMan.y - pellet.y) < pacMan.radius + pellet.radius) {
+      powerPellets.splice(index, 1);
+      pacMan.lives += 1; 
+      score += 10; // increase score when eating a power pellet
+    }
+  });
+
+  dots.forEach((dot, index) => {
+    if (Math.hypot(pacMan.x - dot.x, pacMan.y - dot.y) < pacMan.radius + dot.radius) {
+      dots.splice(index, 1);
+      score += 1; // increase score when eating a dot
+    }
+  });
+
+  ghosts.forEach((ghost, index) => {
+    if (Math.hypot(pacMan.x - ghost.x, pacMan.y - ghost.y) < pacMan.radius + ghost.radius) {
+      pacMan.lives -= 1; 
+      pacMan.x = 100; 
+      pacMan.y = 100;
+      if(pacMan.lives <= 0) {
+        // Handle game over condition (e.g., reset game or show game over screen)
+      }
+    }
+  });
+  
+}
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  
+  powerPellets[0].x = 60;
+  powerPellets[0].y = 60;
+  
+  powerPellets[1].x = canvas.width -60;
+  powerPellets[1].y = 60;
+  
+  powerPellets[2].x = 60;
+  powerPellets[2].y = canvas.height - 60;
+  
+  powerPellets[3].x = canvas.width - 60;
+  powerPellets[3].y = canvas.height - 60;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
+function drawHUD() {
+  ctx.font = '20px Arial';
+  ctx.fillStyle = 'white';
+  ctx.fillText('Score: ' + score, 10, 20);
+  ctx.fillText('Lives: ' + pacMan.lives, 10, 50);
+}
+
+function update() {
+  let dx = 0;
+  let dy = 0;
+  if (keys['ArrowUp']) {
+    dy = -1;
+  }
+  if (keys['ArrowDown']) {
+    dy = 1;
+  }
+  if (keys['ArrowLeft']) {
+    dx = -1;
+  }
+  if (keys['ArrowRight']) {
+    dx = 1;
+  }
+  pacMan.move(dx, dy);
+  ghosts.forEach(ghost => ghost.move());
+}
+
+function render() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  powerPellets.forEach((pellet) => {
+    ctx.beginPath();
+    ctx.arc(pellet.x, pellet.y, pellet.radius, 0, Math.PI * 2);
+    ctx.fillStyle = pellet.color;
+    ctx.fill();
+  });
+  dots.forEach((dot) => {
+    ctx.beginPath();
+    ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+    ctx.fillStyle = dot.color;
+    ctx.fill();
+  });
+  ghosts.forEach((ghost) => {
+    ctx.beginPath();
+    ctx.arc(ghost.x, ghost.y, ghost.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ghost.color;
+    ctx.fill();
+  });
+  ctx.beginPath();
+  ctx.arc(pacMan.x, pacMan.y, pacMan.radius, pacMan.angle, Math.PI - pacMan.angle);
+  ctx.lineTo(pacMan.x, pacMan.y);
+  ctx.fillStyle = pacMan.color;
+  ctx.fill();
+  drawHUD();
+}
+
+function loop() {
+  update();
+  checkCollisions();
+  render();
+  requestAnimationFrame(loop);
+}
+
+loop();
