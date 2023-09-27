@@ -1,0 +1,165 @@
+<!-- verkefni 2 -->
+<!-- Fribbi -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <title>verkefni 2</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>  
+</head>
+<style>
+    body {
+        margin: 0;
+    }
+    canvas {
+        background: #f0f0f0;
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+<body>
+    <!-- breyttu breidd og hæð -->
+	<canvas id="myCanvas" width="800" height="600"></canvas>
+
+	<script>
+    // Tiago Miguel Martins Foutinho
+    // Skilaverkefni 2 - 
+
+    // setup canvas
+    let canvas = document.querySelector('canvas');
+    let ctx = canvas.getContext('2d');
+
+    // Canvas radius breytis í stærð á skjá, þarf samt að refresha til að breytast
+    // FIXME
+    let width = (canvas.width = innerWidth);
+    let height = (canvas.height = innerHeight);
+
+
+    // Power Pellets Class
+    class PowerPellets {
+            // Constructor sem inniheldur allar upplysingar
+        constructor(x, y, radius,) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+            this.color = "Yellow";
+        }
+        // Teikna gulan power pellet
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fillStyle = this.color
+            ctx.fill();
+        }
+    };
+
+    // PacMan Class 
+    class PacMan {
+        // Constructor sem inniheldur allar upplysingar
+        constructor(x, y) {
+            this.x = x; // X hnit fyrir pacman
+            this.y = y; // Y hnit fyrir pacman
+            this.velX = 3; // Fastur Hraði
+            this.velY = 3; // Fastur Hraði
+            this.radius = 30;  // Fastur Radius
+            this.angle = Math.PI / 4;  // Fast Horn
+            this.color = "Yellow";  // Fastur Litur
+            this.life = 3;  // Föst Líf
+
+        }
+
+        // Teikna pacman með opinn munn
+        draw() {
+            ctx.beginPath(); // Byrja að teikna hringinn
+            ctx.arc(this.x, this.y, this.radius, this.angle / 2, Math.PI * 2 - this.angle / 2, false); // Reikna út hring með 45° munn
+            ctx.lineTo(this.x, this.y); // Bua til línur fyrir munnin
+            ctx.closePath(); // Loka teiknaðann hringinn
+            ctx.fillStyle = this.color; // Stilla litinn (Gulur)
+            ctx.fill(); // Fylla hringinn með Litinn
+
+            // Býr til auga á pacman
+            let eyeRadius = this.radius / 6; // Breyta fyrir stærð á augað
+            let eyeX = this.x + this.radius / 3; // Breyta X ásinum á augað
+            let eyeY = this.y - this.radius / 2; // Breyta Y ásinum á augað
+
+            // Teikna augað á pacman með svartan lit
+            ctx.beginPath();
+            ctx.arc(eyeX, eyeY, eyeRadius, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fillStyle = "black"; // Auga litur
+            ctx.fill();
+
+        }
+
+        update() {
+            this.x += this.velX;
+            this.y += this.velY;
+
+            // Athuga hvort hann rekst í brúnir á canvas
+            if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                this.velX *= -1; // Breytir um átt við áresktur á hægri eða vinstri vegg
+            }
+            if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                this.velY *= -1; // Breytir um átt við áresktur á toppnum eða gólfinu
+            }
+        }
+    };
+
+    class Ghost{
+        constructor(color) {
+            this.radius = 30;
+            this.x = Math.random() * (canvas.width - this.radius * 2) + this.radius; // Random x coordinate
+            this.y = Math.random() * (canvas.height - this.radius * 2) + this.radius; // Random y coordinate
+            this.color = color;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fillStyle = this.color
+            ctx.fill();
+        }
+    }
+
+    // Bý til eitt Power Pellet
+    let pellet1 = new PowerPellets(500, 500, 10);
+    pellet1.draw();
+
+    // Bý til eitt PacMan
+    let pacman = new PacMan(30, 30);
+    pacman.draw();
+
+    let ghosts = [
+        new Ghost("Cyan"),
+        new Ghost("Red"),
+        new Ghost("Pink"),
+        new Ghost("Orange")
+    ];
+
+    function drawGhosts() {
+        for (const ghost of ghosts) {
+            ghost.draw();
+        }
+    }
+
+    // Function til þess að látta PacMan hreyfast
+    function animate() {
+        requestAnimationFrame(animate);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        pellet1.draw();
+        drawGhosts();
+        pacman.update();
+        pacman.draw();
+    }
+
+    // Kalla á animate fallið, svo hann byrjar að hreyfast.
+    animate();
+</script>
+		
+</body>
+
+</html>

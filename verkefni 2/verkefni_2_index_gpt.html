@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="is">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pac-Man Leikur</title>
+<style>
+  body { margin: 0; }
+  canvas { display: block; margin: 0 auto; background: #000; }
+</style>
+</head>
+<body>
+
+<!-- This is where your game will be rendered -->
+<canvas id="gameCanvas"></canvas>
+
+<script>
+// Define a class for the power pellets
+class PowerPellet {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 5;
+    this.color = 'yellow';
+  }
+}
+
+// Define a class for Pac-Man
+class PacMan {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 10;
+    this.color = 'yellow';
+    this.lives = 3;
+    this.speed = 2;
+  }
+
+  // Method to move Pac-Man by updating its x and y coordinates
+  move(dx, dy) {
+    this.x += dx;
+    this.y += dy;
+  }
+}
+
+// Define a class for the ghosts
+class Ghost {
+  constructor(x, y, color) {
+    this.x = x;
+    this.y = y;
+    this.radius = 10;
+    this.color = color;
+    this.direction = Math.random() * 2 * Math.PI;
+    this.speed = 2;
+  }
+
+  // Method to move the ghosts based on a random direction and speed
+  move() {
+    this.x += Math.cos(this.direction) * this.speed;
+    this.y += Math.sin(this.direction) * this.speed;
+  }
+}
+
+// Get the canvas element and its context to draw on it
+const canvas = document.getElementById('gameCanvas');
+const ctx = canvas.getContext('2d');
+
+// Initialize the Pac-Man and game objects (power pellets and ghosts)
+let pacMan = new PacMan(100, 100);
+const powerPellets = [
+  new PowerPellet(20, 20),
+  new PowerPellet(canvas.width - 20, 20),
+  new PowerPellet(20, canvas.height - 20),
+  new PowerPellet(canvas.width - 20, canvas.height - 20),
+];
+const ghosts = [
+  new Ghost(200, 200, 'red'),
+  new Ghost(300, 300, 'pink'),
+  new Ghost(400, 400, 'cyan'),
+  new Ghost(500, 500, 'orange'),
+];
+
+// Function to check for collisions between different game objects
+function checkCollisions() {
+  // Check for collisions between Pac-Man and the power pellets
+  powerPellets.forEach((pellet, index) => {
+    const dist = Math.hypot(pellet.x - pacMan.x, pellet.y - pacMan.y);
+    if(dist < pellet.radius + pacMan.radius) {
+      pacMan.lives += 1;  // Increase Pac-Man's lives
+      powerPellets.splice(index, 1);  // Remove the eaten pellet from the array
+    }
+  });
+  
+  // Check for collisions between Pac-Man and the ghosts
+  ghosts.forEach(ghost => {
+    const dist = Math.hypot(ghost.x - pacMan.x, ghost.y - pacMan.y);
+    if(dist < ghost.radius + pacMan.radius) {
+      pacMan.lives -= 1;  // Decrease Pac-Man's lives
+      if (pacMan.lives <= 0) {
+        // Reset the game when Pac-Man loses all lives
+        pacMan = new PacMan(100, 100);
+      }
+    }
+  });
+
+  // Check for collisions between the ghosts themselves
+  for(let i = 0; i < ghosts.length; i++) {
+    for(let j = i+1; j < ghosts.length; j++) {
+      const dist = Math.hypot(ghosts[i].x - ghosts[j].x, ghosts[i].y - ghosts[j].y);
+      if(dist < ghosts[i].radius + ghosts[j].radius) {
+        // Change the directions of the ghosts when they collide
+        ghosts[i].direction = Math.random() * 2 * Math.PI;
+        ghosts[j].direction = Math.random() * 2 * Math.PI;
+      }
+    }
+  }
+}
+
+// Function to resize the canvas to fit the window size
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+// Event listener to handle window resize events
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas(); // Initial call to set the correct size
+
+// Update function to handle the movements of Pac-Man and ghosts
+function update() {
+  // Move Pac-Man diagonally (you would add user input to control this)
+  pacMan.move(1, 1);
+
+  // Move all the ghosts
+  ghosts.forEach(ghost => ghost.move());
+}
+
+// Render function to draw all the game objects on the canvas
+function render() {
+  // Clear the previous frame
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw power pellets
+  powerPellets.forEach((pellet) => {
+    ctx.beginPath();
+    ctx.arc(pellet.x, pellet.y, pellet.radius, 0, Math.PI * 2);
+    ctx.fillStyle = pellet.color;
+    ctx.fill();
+  });
+
+  // Draw Pac-Man
+  ctx.beginPath();
+  ctx.arc(pacMan.x, pacMan.y, pacMan.radius, 0, Math.PI * 2);
+  ctx.fillStyle = pacMan.color;
+  ctx.fill();
+
+  // Draw ghosts
+  ghosts.forEach((ghost) => {
+    ctx.beginPath();
+    ctx.arc(ghost.x, ghost.y, ghost.radius, 0, Math.PI * 2);
+    ctx.fillStyle = ghost.color;
+    ctx.fill();
+  });
+
+  // Check for any collisions and update the game state
+  checkCollisions();
+  update();
+
+  // Request the next frame
+  window.requestAnimationFrame(render);
+}
+
+// Start the game loop
+render();
+</script>
+</body>
+</html>

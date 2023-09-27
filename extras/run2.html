@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    margin: 0;
+  }
+  #gameCanvas {
+    background-color: black;
+    display: block;
+    margin: 0 auto;
+  }
+</style>
+<title>Pac-Man Game</title>
+</head>
+<body>
+
+<canvas id="gameCanvas" width="800" height="600"></canvas>
+
+<script>
+  const canvas = document.getElementById('gameCanvas');
+  const context = canvas.getContext('2d');
+
+  class PowerPellets {
+    // Defining the PowerPellets class with x and y coordinates as parameters
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.color = "yellow";
+      this.radius = 5;
+    }
+
+    // Drawing a yellow circle to represent a PowerPellet
+    draw() {
+      context.fillStyle = this.color;
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+      context.fill();
+    }
+  }
+
+  class PacMan {
+    // Defining the PacMan class with x and y coordinates and initial number of lives
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.radius = 20;
+      this.color = "yellow";
+      this.lives = 3;
+      this.angle = 0.2;
+    }
+
+    // Drawing PacMan with a sector of a circle for its mouth and a circle for its eye
+    draw() {
+      context.fillStyle = this.color;
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, this.angle, 2 * Math.PI - this.angle);
+      context.lineTo(this.x, this.y);
+      context.fill();
+
+      // Drawing the eye
+      context.fillStyle = "black";
+      context.beginPath();
+      context.arc(this.x - 5, this.y - 10, 2, 0, 2 * Math.PI);
+      context.fill();
+    }
+
+    // Method to move PacMan and check boundaries to prevent it from going off the canvas
+    move(dx, dy) {
+      this.x += dx;
+      this.y += dy;
+      
+      if (this.x < this.radius || this.x > canvas.width - this.radius) {
+        this.x -= dx;
+      }
+      if (this.y < this.radius || this.y > canvas.height - this.radius) {
+        this.y -= dy;
+      }
+    }
+
+    // Method to decrease the number of lives of PacMan
+    loseLife() {
+      this.lives -= 1;
+    }
+  }
+
+  class Ghost {
+    // Defining the Ghost class with x and y coordinates and color as parameters
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.color = color;
+      this.radius = 15;
+      this.dx = (Math.random() - 0.5) * 2;
+      this.dy = (Math.random() - 0.5) * 2;
+    }
+
+    // Drawing a ghost with a circle filled with a specified color
+    draw() {
+      context.fillStyle = this.color;
+      context.beginPath();
+      context.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+      context.fill();
+    }
+
+    // Method to move the ghost randomly and check boundaries to prevent it from going off the canvas
+    move() {
+      this.x += this.dx;
+      this.y += this.dy;
+
+      if (this.x < this.radius || this.x > canvas.width - this.radius) {
+        this.dx = -this.dx;
+      }
+      if (this.y < this.radius || this.y > canvas.height - this.radius) {
+        this.dy = -this.dy;
+      }
+    }
+  }
+
+  // Initializing objects: PacMan, four PowerPellets at the corners, and four ghosts with different colors
+  let pacman = new PacMan(400, 300);
+  let powerPellets = [
+    new PowerPellets(50, 50),
+    new PowerPellets(750, 50),
+    new PowerPellets(50, 550),
+    new PowerPellets(750, 550),
+  ];
+
+  let ghosts = [
+    new Ghost(200, 200, "red"),
+    new Ghost(600, 200, "pink"),
+    new Ghost(200, 400, "cyan"),
+    new Ghost(600, 400, "orange"),
+  ];
+
+  function gameLoop() {
+    // Clearing the canvas before drawing the objects in their new positions
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Drawing and moving PacMan, ghosts, and power pellets in each frame
+    pacman.draw();
+    powerPellets.forEach(pellet => pellet.draw());
+    ghosts.forEach(ghost => { ghost.draw(); ghost.move(); });
+
+    // Here, you would add your collision detection and other game logic
+
+    // Continuing the game loop by calling gameLoop again at the next animation frame
+    requestAnimationFrame(gameLoop);
+  }
+
+  // Adding keyboard controls to move PacMan
+  document.addEventListener('keydown', function(event) {
+    switch(event.code) {
+      case 'ArrowUp': pacman.move(0, -10); break;
+      case 'ArrowDown': pacman.move(0, 10); break;
+      case 'ArrowLeft': pacman.move(-10, 0); break;
+      case 'ArrowRight': pacman.move(10, 0); break;
+    }
+  });
+
+  // Starting the game loop
+  gameLoop();
+</script>
+</body>
+</html>
