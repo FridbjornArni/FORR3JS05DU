@@ -1,0 +1,29 @@
+
+--- javascript forritun dom útskýring ---
+
++ dom er ekki javascript heldur getur geturu unnið með hvaða tungumal sem er en javascript er besta tungumalið til þess að nota í þessu
++ dom er tré sem að útskýrir hvernig það er unnið með all á síðu
+
+
+--- BOM --- 
+
+					window
+	document 	BOM 	 						javascript
+	---------------------------------------
+	..				navigateor				obj
+						screen						array
+						location					function
+						frames						....
+						history
+						xmlhttprequest
+
+
+
+ekki nota first child og last child eða sibling  þar sem að það er möguleiki að velja white space sem að er bilið á milli sem að getur verið valið
+
+
+nota bara þetta classísca shit aka for til að fara í gegnum og það þarf allt að vera dinamic því að js er svo dinamic að það breytist realtime þannig ALDREI EVER FUCK AROUND MEÐ HARDCODED NUMBER IN LIST listinn getur breyst á no time 
+
+
+
+-- js30 day challenge --
