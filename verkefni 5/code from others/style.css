@@ -1,0 +1,90 @@
+/* 
+Tiago Miguel Martins foutinho
+Verkefni 5 
+*/
+
+html, body {
+  font-family: 'Fira Code';
+  background-color: rgb(39, 39, 39);
+  color: azure;
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+    
+h1 {
+  color: #b89856;
+  font-weight: 500;
+  height: 100%;
+  text-align: center;
+  padding-top: 10px;
+}
+
+footer {
+  text-align: center;
+  font-size: 12px;
+  color: rgba(240, 255, 255, 0.318);
+  padding-bottom: 10px;
+}
+
+button {
+  padding: 7px 20px;
+  border: none;
+  background-color: #b89856;
+  color: rgb(39, 39, 39);
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color: #ac7f25;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.indent {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+.item:hover {
+  text-decoration: line-through;
+  color: rgba(255, 116, 116, 0.674);
+}
+
+
+#totalPrice {
+  padding-left: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: rgb(58, 167, 53);
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+#itemInput {
+  padding: 10px;
+  border-radius: 4px;
+  width: 60%;
+}
+
+#itemName{
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(240, 255, 255, 0.971);
+}
+
+#itemPrice{
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(240, 255, 255, 0.971);
+}

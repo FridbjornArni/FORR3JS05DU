@@ -4,22 +4,24 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Verkefni 5</title>
-	<script src="verkefni5.js"></script>
-	<style src="verkefni5.css"></style>
+	<link rel="stylesheet" href="verkefni5.css">
 </head>
 <body>
-	<div class="center">
+	<div>
 		<header>
-			<h1>grocerylist</h1>
+			<h1>shopping list</h1>
 		</header>
-		<main>
-			<div id="list">
-				<ul>
-					<li>banana</li>
-					<li>apple</li>
-				</ul>
-			</div>
-		</main>
+		<div id="itemList"></div>
+		<div id="totalPrice"></div>
+		<div class="addNew">
+				<input type="item" class="inpStuff">
+				<input id="inpPrice" type="number" name="price" value="0" />
+				<button id="newitem" class="submitBtn">add new item</button>
+		</div>
 	</div>
+	<footer>
+		
+	</footer>
+	<script src="verkefni5.js"></script>
 </body>
 </html>

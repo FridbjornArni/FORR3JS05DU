@@ -1,4 +1,47 @@
-
-.center{
-	
+body, html {
+	height: 100%;
+	margin: 0 auto;
+	padding: auto;
+	color: white;
+	background-color: black;	
 }
+
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: auto;
+}
+
+div > #totalPrice{
+	/* display: flex;
+	flex-direction: column;
+	align-content: righ; */
+	text-align: right;
+	padding-right: 2em;
+}
+
+input {
+	min-width: 100%;
+	min-height: 1em;
+	max-height: 1em;
+}
+
+/* grid for form */
+.addNew{
+	margin-left: 1em;
+	display: grid;
+	grid-template-columns: repeat(6,1fr);
+	grid-template-rows: 1;
+	gap: 1em;
+}
+.inpStuff{
+	grid-column: 1/4;
+}
+.inpPrice{
+	grid-column: 4/5;
+}
+.submitBtn{
+	width: 100%;
+	grid-column: 5/6;
+}	
