@@ -45,3 +45,17 @@ input {
 	width: 100%;
 	grid-column: 5/6;
 }	
+
+/* add in if hover... */
+#itemList>ul>li:hover{
+	text-decoration: line-through;
+	color: lightcoral;
+}
+
+/* footer work that dont realy matter */
+footer{
+	color: lightgray;
+	font-size: 12pt;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+}
