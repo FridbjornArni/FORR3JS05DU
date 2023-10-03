@@ -1,5 +1,11 @@
 // Try to retrieve the shopping list from local storage
-let storedShoppingList = JSON.parse(localStorage.getItem("shoppingList")) || { items: [] };
+let storedShoppingList = JSON.parse(localStorage.getItem("shoppingList")) || { items: [
+  { name: "pizza", price: 850 },
+  { name: "t-shirt", price: 3000 },
+  { name: "bounty", price: 150 },
+  { name: "coke", price: 250 },
+],
+total: 0,};
 let shoppingList = storedShoppingList;
 
 function updatePage() {

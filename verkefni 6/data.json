@@ -1,0 +1,72 @@
+[
+	{
+			"name": "Concert at Harpa",
+			"price": 3500,
+			"date": "2023-10-15",
+			"location": "Harpa, Reykjavik",
+			"image_url": "https://example.com/concert-image.jpg"
+	},
+	{
+			"name": "Programming Education Seminar",
+			"price": 0,
+			"date": "2023-11-05",
+			"location": "University of Reykjavik",
+			"image_url": "https://example.com/seminar-image.jpg"
+	},
+	{
+			"name": "Japanese Cuisine Workshop",
+			"price": 2500,
+			"date": "2023-10-20",
+			"location": "Hikari Restaurant, Akureyri",
+			"image_url": "https://example.com/workshop-image.jpg"
+	},
+	{
+			"name": "Pet Expo",
+			"price": 500,
+			"date": "2023-11-12",
+			"location": "Dýrgripur, Reykjavik",
+			"image_url": "https://example.com/pet-expo-image.jpg"
+	},
+	{
+			"name": "Movie Screening: The Dragon Chief",
+			"price": 1000,
+			"date": "2023-10-25",
+			"location": "Bíó Paradís, Reykjavik",
+			"image_url": "https://example.com/movie-screening-image.jpg"
+	},
+	{
+			"name": "Reykjavik Festival Day",
+			"price": 0,
+			"date": "2023-12-01",
+			"location": "Downtown Reykjavik",
+			"image_url": "https://example.com/festival-image.jpg"
+	},
+	{
+			"name": "Trip to Þórsmörk",
+			"price": 4500,
+			"date": "2023-10-28",
+			"location": "Þórsmörk, South Iceland",
+			"image_url": "https://example.com/thorsmork-image.jpg"
+	},
+	{
+			"name": "Northern Lights in Húsavík",
+			"price": 2000,
+			"date": "2023-11-18",
+			"location": "Húsavík, North Iceland",
+			"image_url": "https://example.com/northern-lights-image.jpg"
+	},
+	{
+			"name": "Breakfast Buffet at Eldsmiðjan",
+			"price": 1500,
+			"date": "2023-10-22",
+			"location": "Eldsmiðjan, Reykjavik",
+			"image_url": "https://example.com/breakfast-buffet-image.jpg"
+	},
+	{
+			"name": "Art Museum Day in Akureyri",
+			"price": 0,
+			"date": "2023-11-04",
+			"location": "Akureyri Art Museum",
+			"image_url": "https://example.com/art-museum-image.jpg"
+	}
+]
