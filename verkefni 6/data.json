@@ -4,69 +4,69 @@
 			"price": 3500,
 			"date": "2023-10-15",
 			"location": "Harpa, Reykjavik",
-			"image_url": "https://example.com/concert-image.jpg"
+			"image_url": "https://a.travel-assets.com/findyours-php/viewfinder/images/res70/128000/128359-Harpa.jpg?impolicy=fcrop&w=1040&h=580&q=mediumHigh"
 	},
 	{
 			"name": "Programming Education Seminar",
 			"price": 0,
 			"date": "2023-11-05",
 			"location": "University of Reykjavik",
-			"image_url": "https://example.com/seminar-image.jpg"
+			"image_url": "https://lh5.googleusercontent.com/jZ_EEuG8cwUF-3Zg2Av7aeDmz854AyAg3zUQq4EEg4xZdd-M4k6bDNoaBX-F7DquhB3zHPTq9hcF0BeI9HzLpf7vHpgvODurWwRmK4It9uqJjoLZGj4g2wRWEMMSONTzkzFCiy6fjz-iU7i8eA"
 	},
 	{
 			"name": "Japanese Cuisine Workshop",
 			"price": 2500,
 			"date": "2023-10-20",
 			"location": "Hikari Restaurant, Akureyri",
-			"image_url": "https://example.com/workshop-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsantropolroulant.org%2Fwp-content%2Fuploads%2F2016%2F03%2Fchop-800x400.jpg&f=1&nofb=1&ipt=d7e2b26270e6405afd842ddbecdf4780171f66dd40c72934aa2ab8bf3a60c49e&ipo=images"
 	},
 	{
 			"name": "Pet Expo",
 			"price": 500,
 			"date": "2023-11-12",
 			"location": "Dýrgripur, Reykjavik",
-			"image_url": "https://example.com/pet-expo-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.wPGfEt2DjcUFAOadp_a4BwHaHF%26pid%3DApi&f=1&ipt=4e45f08ae08757b054c113657171bf8df5bd0230abf3779ca51bc28d1745cfca&ipo=images"
 	},
 	{
 			"name": "Movie Screening: The Dragon Chief",
 			"price": 1000,
 			"date": "2023-10-25",
 			"location": "Bíó Paradís, Reykjavik",
-			"image_url": "https://example.com/movie-screening-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.thebraggingmommy.com%2Fwp-content%2Fuploads%2F2019%2F02%2Fdragonposter.jpg&f=1&nofb=1&ipt=c5ed6cf5d201f678a6ad47292b00b6ab80aa48d501856153625393a564208070&ipo=images"
 	},
 	{
 			"name": "Reykjavik Festival Day",
 			"price": 0,
 			"date": "2023-12-01",
 			"location": "Downtown Reykjavik",
-			"image_url": "https://example.com/festival-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn2.wanderlust.co.uk%2Fmedia%2F2937%2Fblogs-reykjaviks-top-5-summer-festivals.jpg%3Fanchor%3Dcenter%26mode%3Dcrop%26width%3D1200%26height%3D0%26rnd%3D131455573620000000&f=1&nofb=1&ipt=6dd880a6a36c6f7b387ec325d95b1037c6e9ed6b5f3066b3b0c340d115aa18a1&ipo=images"
 	},
 	{
 			"name": "Trip to Þórsmörk",
 			"price": 4500,
 			"date": "2023-10-28",
 			"location": "Þórsmörk, South Iceland",
-			"image_url": "https://example.com/thorsmork-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fguidetoiceland.imgix.net%2F377654%2Fx%2F0%2Fthorsmork-valley-provides-an-incredible-diversity-of-landscapes&f=1&nofb=1&ipt=d031cf295208cc4bdcb063b68f6aa464cb2c0708ed0c799023e0472036448e22&ipo=images"
 	},
 	{
 			"name": "Northern Lights in Húsavík",
 			"price": 2000,
 			"date": "2023-11-18",
 			"location": "Húsavík, North Iceland",
-			"image_url": "https://example.com/northern-lights-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fguidetoiceland.imgix.net%2F313714%2Fx%2F0%2Fhusavik-glows-beneath-a-glorious-display-of-the-aurora-borealis-2&f=1&nofb=1&ipt=b13ac4e646850d9eae109120558052c24f57171632d7c52227d6288079ea3bab&ipo=images"
 	},
 	{
 			"name": "Breakfast Buffet at Eldsmiðjan",
 			"price": 1500,
 			"date": "2023-10-22",
 			"location": "Eldsmiðjan, Reykjavik",
-			"image_url": "https://example.com/breakfast-buffet-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fkendallhotel.com%2Fwp-content%2Fgallery%2F2019-breakfast%2FDSC04154.jpg&f=1&nofb=1&ipt=eee36fa590710280ba7e508c40581b3a766bcaf8bacbffd410ea993d328d560f&ipo=images"
 	},
 	{
 			"name": "Art Museum Day in Akureyri",
 			"price": 0,
 			"date": "2023-11-04",
 			"location": "Akureyri Art Museum",
-			"image_url": "https://example.com/art-museum-image.jpg"
+			"image_url": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fscanmagazine.co.uk%2Fcontent%2Fuploads%2F2016%2F01%2FAkureyriArtMuseum.jpg&f=1&nofb=1&ipt=03038b5c6b485eef68f54bb2b1ff30cb5591cde8596b4083342ee19b3ffac456&ipo=images"
 	}
 ]

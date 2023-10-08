@@ -1,0 +1,7 @@
+-- það þarf að passa að kóði keyrir ekki fyrr en hann er kominn með gögn til að vinna með
+
+-- vilt vera með allt í divum einfaldar allt
+
+-- ekki nota takka !!
+
+gera 5 fyrir 6 þar sem að það er immpossible að gera þetta ofögut með góðu
