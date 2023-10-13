@@ -8,7 +8,7 @@
 	<link rel="gpt_stylesheet" href="gptstyler.css">
 </head>
 <body>
-<header class="site-header">
+<!-- <header class="site-header">
     <div class="container">
       <div class="logo">
         <a href="#">EventLogo</a>
@@ -26,7 +26,18 @@
         <a href="#" class="buy-tickets">Buy Tickets</a>
       </div>
     </div>
-  </header>
+  </header> -->
+	<select id="sortSelect">
+		<option value="none">--Sort by--</option>
+		<option value="price-asc">Price (Low to High)</option>
+		<option value="price-desc">Price (High to Low)</option>
+		<option value="date-asc">Date (Oldest to Newest)</option>
+		<option value="date-desc">Date (Newest to Oldest)</option>
+	</select>
+	<label for="priceSlider">Price: <span id="priceLabel"></span></label>
+<input type="range" id="priceSlider" step="10">
+
+
 	<!-- display items from json -->
   <div id="itemContainer">
     <!-- Items will be displayed here -->

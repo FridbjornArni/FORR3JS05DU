@@ -9,3 +9,11 @@
 	width: 100%;
 	height: auto;
 }
+
+.slider-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: right;
+}
+
+/* Additional styles for the slider or label can go here */
